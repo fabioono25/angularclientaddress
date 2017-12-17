@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!clientForm.valid">Salvar</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              #email>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image</label>
+            <input
+              type="text"
+              id="imagePath"
+              formControlName="imagePath"
+              class="form-control"
+              #imagePath>
+          </div>
+        </div>
+      </div>      
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="imagePath.value" class="img-responsive">
+        </div>
+      </div>
+   
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>Endereços</h4>
+        </div>      
+        <div class="col-xs-12" formArrayName="addresses">
+          <div
+            class="row"
+            *ngFor="let addressCtrl of clientForm.get('addresses').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="street">
+            </div>
+            <div class="col-xs-2">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="number">
+            </div>
+            <!-- <div class="col-xs-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="typeId">
+            </div> -->
+            <!-- <div class="col-xs-2">
+              <select>
+                  <option *ngFor="let type of addressTypes" value= {{type.id}}>
+                    {{type.name}}
+                  </option>
+                </select>
+            </div> -->
+            <div class="col-xs-2">
+              <select name="cboAddressType" id="" class="form-control">
+                <option value="CA7D233F-260F-48EE-8875-60CDFAD14764">Shipping Address</option>
+                <option value="E7B1371A-3500-48E8-A474-8BAA4A474DCF">Residence Address</option>
+                <option value="4A647CFA-81E8-461C-8D06-9A2AB9164370">Location Address</option>
+                <option value="405CE425-147C-4D06-9BB9-E99CD53DDCF3">Billing Address</option>
+              </select>
+            </div>
+
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteAddress(i)">X</button>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-xs-12">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddAddress()">Adicionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
