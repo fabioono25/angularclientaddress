@@ -4,9 +4,8 @@ import { Subject } from 'rxjs/Subject';
 export class AddressService {
   addressesChanged = new Subject<Address[]>();
   startedEditing = new Subject<number>();
+  
   private addresses: Address[] = [
-    new Address('41D66DCA-6785-415B-8FB0-71EDD114A1B3','Rua das Camelias', '123','405CE425-147C-4D06-9BB9-E99CD53DDCF3'),
-    new Address('254F7D0F-0D91-4901-BB00-ACB77EF9409F','Rua João Bosco', '2B','E7B1371A-3500-48E8-A474-8BAA4A474DCF'),
   ];
 
   getAdresses() {
